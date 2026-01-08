@@ -29,7 +29,7 @@ def build_chain(vectorstore):
 
     # 3️⃣ LLM
     llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="models/gemini-1.5-flash",
         temperature=0
     )
 
