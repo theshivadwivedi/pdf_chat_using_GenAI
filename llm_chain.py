@@ -44,5 +44,4 @@ chain = (
         | llm
         | StrOutputParser()
 )
-
-    return chain
+ return chain
