@@ -4,14 +4,9 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 
-
 def build_chain(vectorstore):
-    # 1️⃣ Retriever
-    retriever = vectorstore.as_retriever(
-        search_kwargs={"k": 3}
-    )
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-    # 2️⃣ Prompt
     prompt = ChatPromptTemplate.from_template(
         """
         Use the following context to answer the question.
@@ -27,13 +22,11 @@ def build_chain(vectorstore):
         """
     )
 
-    # 3️⃣ LLM
     llm = ChatGoogleGenerativeAI(
         model="models/gemini-1.5-flash",
         temperature=0
     )
 
-    # 4️⃣ LCEL Chain
     chain = (
         {
             "context": retriever,
