@@ -1,9 +1,8 @@
 import streamlit as st
-import os
+
 from pdf_loader import load_and_split_pdf
 from vector_store import create_vectorstore
 from llm_chain import build_chain
-
 
 
 st.set_page_config(
@@ -12,20 +11,20 @@ st.set_page_config(
     layout="centered"
 )
 
-# --- Header ---
 st.title("📄 Chat with your PDF")
 st.write("Ask questions and get answers directly from your document.")
 
 st.divider()
 
-# --- Session State ---
+# Session state
 if "chain" not in st.session_state:
     st.session_state.chain = None
 
 if "pdf_loaded" not in st.session_state:
     st.session_state.pdf_loaded = False
 
-# --- Layout ---
+
+# Layout
 left, right = st.columns([1, 2])
 
 with left:
@@ -43,7 +42,8 @@ with right:
     else:
         st.info("Upload a PDF to begin")
 
-# --- PDF Processing ---
+
+# PDF processing
 if uploaded_file and not st.session_state.pdf_loaded:
     with st.spinner("Reading and indexing PDF..."):
         with open("temp.pdf", "wb") as f:
@@ -58,7 +58,7 @@ if uploaded_file and not st.session_state.pdf_loaded:
 
 st.divider()
 
-# --- Chat Section ---
+# Chat section
 st.subheader("💬 Ask Questions")
 
 question = st.text_input(
