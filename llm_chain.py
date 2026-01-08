@@ -44,4 +44,4 @@ def build_chain(vectorstore):
         | llm
         | StrOutputParser()
      )
-    return chain
+     return chain
