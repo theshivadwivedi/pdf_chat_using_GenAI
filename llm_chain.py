@@ -28,14 +28,14 @@ def build_chain(vectorstore):
 
 
 
-  llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    temperature=0,
-    google_api_key=get_google_api_key()
-   )
+     llm = ChatGoogleGenerativeAI(
+       model="gemini-2.5-flash",
+       temperature=0,
+       google_api_key=get_google_api_key()
+     )
 
-    # 4️⃣ LCEL Chain
-  chain = (
+     # 4️⃣ LCEL Chain
+     chain = (
         {
             "context": retriever,
             "question": RunnablePassthrough()
@@ -43,5 +43,5 @@ def build_chain(vectorstore):
         | prompt
         | llm
         | StrOutputParser()
-    )
-   return chain
+     )
+    return chain
