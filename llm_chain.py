@@ -26,11 +26,13 @@ def build_chain(vectorstore):
         """
     )
 
-    # 3️⃣ LLM
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
-        temperature=0
-    )
+from config import get_google_api_key
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0,
+    google_api_key=get_google_api_key()
+)
 
     # 4️⃣ LCEL Chain
     chain = (
