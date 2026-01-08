@@ -35,7 +35,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
     # 4️⃣ LCEL Chain
-    chain = (
+chain = (
         {
             "context": retriever,
             "question": RunnablePassthrough()
@@ -43,6 +43,6 @@ llm = ChatGoogleGenerativeAI(
         | prompt
         | llm
         | StrOutputParser()
-    )
+)
 
     return chain
