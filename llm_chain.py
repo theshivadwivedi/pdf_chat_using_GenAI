@@ -4,6 +4,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from config import get_google_api_key
 
+
 def build_chain(vectorstore):
     # 1️⃣ Retriever
     retriever = vectorstore.as_retriever(
@@ -26,16 +27,15 @@ def build_chain(vectorstore):
         """
     )
 
+    # 3️⃣ LLM
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash",
+        temperature=0,
+        google_api_key=get_google_api_key()
+    )
 
-
-     llm = ChatGoogleGenerativeAI(
-       model="gemini-2.5-flash",
-       temperature=0,
-       google_api_key=get_google_api_key()
-     )
-
-     # 4️⃣ LCEL Chain
-     chain = (
+    # 4️⃣ LCEL Chain
+    chain = (
         {
             "context": retriever,
             "question": RunnablePassthrough()
@@ -43,5 +43,6 @@ def build_chain(vectorstore):
         | prompt
         | llm
         | StrOutputParser()
-     )
-     return chain
+    )
+
+    return chain
