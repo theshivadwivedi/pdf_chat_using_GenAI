@@ -1,7 +1,5 @@
 import streamlit as st
 import os
-
-from config import GOOGLE_API_KEY
 from pdf_loader import load_and_split_pdf
 from vector_store import create_vectorstore
 from llm_chain import build_chain
