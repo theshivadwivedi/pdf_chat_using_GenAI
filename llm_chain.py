@@ -2,7 +2,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from config import get_google_api_key
+
 
 
 def build_chain(vectorstore):
@@ -30,8 +30,7 @@ def build_chain(vectorstore):
     # 3️⃣ LLM
     llm = ChatGoogleGenerativeAI(
         model="gemini-1.5-flash",
-        temperature=0,
-        api_key=get_google_api_key()
+        temperature=0
     )
 
     # 4️⃣ LCEL Chain
